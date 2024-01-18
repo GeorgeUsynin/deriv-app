@@ -13,6 +13,7 @@ module.exports = function (env) {
             open: openChromeBasedOnPlatform(process.platform),
             openPage: sub_path,
             host: 'localhost',
+            hot: true,
             https: true,
             port: 8443,
             historyApiFallback: true,

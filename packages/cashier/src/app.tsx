@@ -5,7 +5,7 @@ import { ExchangeRatesProvider } from '@deriv/stores';
 
 type TProps = { passthrough: { root_store: React.ComponentProps<typeof CashierProviders>['store'] } };
 
-const App: React.FC<TProps> = ({ passthrough: { root_store } }) => {
+const CashierApp: React.FC<TProps> = ({ passthrough: { root_store } }) => {
     return (
         <CashierProviders store={root_store}>
             <ExchangeRatesProvider>
@@ -15,4 +15,4 @@ const App: React.FC<TProps> = ({ passthrough: { root_store } }) => {
     );
 };
 
-export default App;
+export default CashierApp;

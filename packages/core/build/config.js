@@ -5,6 +5,9 @@ const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
 
 const gitRevisionPlugin = new GitRevisionPlugin();
 
+const IS_RELEASE =
+    process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging' || process.env.NODE_ENV === 'test';
+
 const copyConfig = base => {
     const patterns = [
         {
@@ -46,10 +49,6 @@ const copyConfig = base => {
         {
             from: path.resolve(__dirname, '../node_modules/@deriv/cashier/dist/cashier/js/'),
             to: 'cashier/js',
-        },
-        {
-            from: path.resolve(__dirname, '../node_modules/@deriv/cashier/dist/cashier/css/'),
-            to: 'cashier/css',
         },
         {
             from: path.resolve(__dirname, '../node_modules/@deriv/p2p/dist/p2p/js/'),
@@ -166,6 +165,13 @@ const copyConfig = base => {
             },
         },
     ];
+
+    if (IS_RELEASE) {
+        patterns.push({
+            from: path.resolve(__dirname, '../node_modules/@deriv/cashier/dist/cashier/css/'),
+            to: 'cashier/css',
+        });
+    }
 
     return {
         patterns,

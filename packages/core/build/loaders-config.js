@@ -13,6 +13,7 @@ const js_loaders = [
         options: {
             cacheDirectory: true,
             rootMode: 'upward',
+            plugins: [!IS_RELEASE && require.resolve('react-refresh/babel')].filter(Boolean),
         },
     },
 ];

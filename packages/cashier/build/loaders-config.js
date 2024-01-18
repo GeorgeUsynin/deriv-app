@@ -66,9 +66,7 @@ const svg_loaders = [
 ];
 
 const css_loaders = [
-    {
-        loader: MiniCssExtractPlugin.loader,
-    },
+    { loader: IS_RELEASE ? MiniCssExtractPlugin.loader : 'style-loader' },
     {
         loader: 'css-loader',
         options: {

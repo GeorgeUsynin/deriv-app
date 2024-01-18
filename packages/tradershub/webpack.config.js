@@ -146,34 +146,36 @@ module.exports = function (env) {
                       new CssMinimizerPlugin(),
                   ]
                 : [],
-            splitChunks: {
-                automaticNameDelimiter: '~',
-                cacheGroups: {
-                    default: {
-                        minChunks: 2,
-                        minSize: 102400,
-                        priority: -20,
-                        reuseExistingChunk: true,
-                    },
-                    defaultVendors: {
-                        idHint: 'vendors',
-                        priority: -10,
-                        test: /[\\/]node_modules[\\/]/,
-                    },
-                    shared: {
-                        chunks: 'all',
-                        name: 'shared',
-                        test: /[\\/]shared[\\/]/,
-                    },
-                },
-                chunks: 'all',
-                enforceSizeThreshold: 500000,
-                maxAsyncRequests: 30,
-                maxInitialRequests: 3,
-                minChunks: 1,
-                minSize: 102400,
-                minSizeReduction: 102400,
-            },
+            splitChunks: isRelease
+                ? {
+                      automaticNameDelimiter: '~',
+                      cacheGroups: {
+                          default: {
+                              minChunks: 2,
+                              minSize: 102400,
+                              priority: -20,
+                              reuseExistingChunk: true,
+                          },
+                          defaultVendors: {
+                              idHint: 'vendors',
+                              priority: -10,
+                              test: /[\\/]node_modules[\\/]/,
+                          },
+                          shared: {
+                              chunks: 'all',
+                              name: 'shared',
+                              test: /[\\/]shared[\\/]/,
+                          },
+                      },
+                      chunks: 'all',
+                      enforceSizeThreshold: 500000,
+                      maxAsyncRequests: 30,
+                      maxInitialRequests: 3,
+                      minChunks: 1,
+                      minSize: 102400,
+                      minSizeReduction: 102400,
+                  }
+                : {},
         },
         output: {
             chunkFilename: 'tradershub/js/tradershub.[name].[contenthash].js',

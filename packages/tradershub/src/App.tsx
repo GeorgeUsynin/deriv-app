@@ -6,7 +6,7 @@ import AppContent from './AppContent';
 import { ContentSwitcher, UIProvider } from './components';
 import './index.scss';
 
-const App = () => (
+const TradersHubApp = () => (
     <UIProvider>
         <APIProvider standalone>
             <BreakpointProvider>
@@ -22,4 +22,4 @@ const App = () => (
     </UIProvider>
 );
 
-export default App;
+export default TradersHubApp;
